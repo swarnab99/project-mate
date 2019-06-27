@@ -1,5 +1,4 @@
 import React from 'react'
-import Notifications from './Notifications'
 import ProjectList from '../projects/ProjectList'
 // This will connect redux with react
 import { connect } from 'react-redux'
@@ -16,11 +15,8 @@ const Dashboard = ({ projects, auth }) => {
   return (
     <div className="dashboard container">
       <div className="row">
-        <div className="col s12 m6">
+        <div className="col s12 m6 p-0">
           <ProjectList projects={projects} />
-        </div>
-        <div className="col s12 m5 offset-m1">
-          <Notifications />
         </div>
       </div>
     </div>
@@ -39,6 +35,6 @@ const mapStateToProps = (state) => {
 export default compose(
   connect(mapStateToProps),
   firestoreConnect([
-    { collection: 'projects' }
+    { collection: 'projects', orderBy: ['createdAt', 'desc'] }
   ])
 )(Dashboard)

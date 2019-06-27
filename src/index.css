@@ -17,8 +17,21 @@ body {
   min-height: 100%;
 }
 
+
+
+
+
+/* *Utility Classes */
+.p-0 {
+  padding: 0 !important;
+}
+
+
+
+
+
 nav ul a {
-    padding: 0 6px;
+  padding: 0 6px;
 }
 
 .create-new {
@@ -26,6 +39,7 @@ nav ul a {
   bottom: 20px;
   right: 10px;
 }
+
 
 form {
   padding: 20px;
@@ -42,4 +56,31 @@ input[type=password]:not(.browser-default):focus:not([readonly]),
 textarea.materialize-textarea:focus:not([readonly]){
   border-color: #ec407a;
   box-shadow: none;
+}
+
+
+
+
+
+
+
+
+
+
+/* *For Notificaion Component */
+.notifications {
+  /* margin: 0; */
+}
+
+.notifications .collection {
+  /* margin: 0; */
+}
+
+.notifications ul {
+  border: none;
+}
+
+.notifications .collection-item {
+  margin: .5rem 0 1rem 0;
+  border-radius: 2px;
 }

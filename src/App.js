@@ -6,6 +6,7 @@ import ProjectDetails from './components/projects/ProjectsDetails'
 import SignIn from './components/auth/SignIn'
 import SignUp from './components/auth/SignUp'
 import CreateProject from './components/projects/CreateProject'
+import Notifications from './components/dashboard/Notifications'
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path='/signin' component={SignIn} />
           <Route path='/signup' component={SignUp} />
           <Route path='/create-project' component={CreateProject} />
+          <Route path='/notifications' component={Notifications} />
         </Switch>
       </div>
     </BrowserRouter>
