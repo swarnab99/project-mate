@@ -18,8 +18,8 @@ const Notifications = ({auth, notifications}) => {
             return item.type === 'new_project' ? (
               // When new project is created
               <li className="collection-item avatar z-depth-1"  key={item.id} >
-                <i className="material-icons circle green">insert_chart</i>
-                <span className="title">{item.user} created a project "new project"</span>
+                <i className="material-icons circle green" style={{fontFamily: 'sans-serif'}}>{item.firstName[0] + item.lastName[0]}</i>
+                <span className="title">{item.firstName} {item.lastName} created a project - "{item.projectTitle}"</span>
                 <p className="text-mute">
                   { moment(item.time.toDate()).startOf('min').fromNow() }
                 </p>

@@ -25,7 +25,8 @@ exports.projectCreated = functions.firestore
     const notification = {
       type: 'new_project',
       projectTitle: `${project.title}`,
-      user: `${project.authorFirstName} ${project.authorLastName}`,
+      firstName: project.authorFirstName,
+      lastName: project.authorLastName,
       time: admin.firestore.FieldValue.serverTimestamp()
     }
 
@@ -42,7 +43,8 @@ exports.userJoined = functions.auth.user()
         const newUser = doc.data();
         const notification = {
           type: 'new_user',
-          user: `${newUser.firstName} ${newUser.lastName}`,
+          firstName: newUser.firstName,
+          lastName: newUser.lastName,
           time: admin.firestore.FieldValue.serverTimestamp()
         }
 

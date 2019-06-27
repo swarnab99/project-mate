@@ -38,6 +38,8 @@ export const signOut = () => {
 }
 
 
+// TODO this is not working
+
 // *Action for SignUp (Used in SignUp.js)
 export const signUp = (newUser) => {
   return (dispatch, getState, {getFirebase, getFirestore}) => {

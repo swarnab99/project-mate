@@ -25,6 +25,12 @@ body {
 .p-0 {
   padding: 0 !important;
 }
+.m-0 {
+  margin: 0 !important;
+}
+.my-60 {
+  margin: 60px 0px;
+}
 
 
 
@@ -71,16 +77,44 @@ textarea.materialize-textarea:focus:not([readonly]){
 .notifications {
   /* margin: 0; */
 }
-
 .notifications .collection {
   /* margin: 0; */
 }
-
 .notifications ul {
   border: none;
 }
-
 .notifications .collection-item {
   margin: .5rem 0 1rem 0;
   border-radius: 2px;
+}
+
+
+
+
+
+
+
+/* *For sigIn Component */
+.signIn_form .progress, .signUp_form .progress {
+  height: 10px;
+  background-color: #ec407a;
+  margin: 0 auto;
+  /* width: 96%; */
+  margin-bottom: -5px;
+  z-index: -99;
+  border-radius: 35px;
+}
+.progress .indeterminate {
+  /* background-color: #e0e0e0; */
+  background-color: #fff;
+}
+.signIn_form, .signUp_form {    
+  border: 1px solid #ffffff;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.signIn_btn, .signUp_btn {
+  display: block;
+  margin: 0 auto;
+  border-radius: 4px;
 }
