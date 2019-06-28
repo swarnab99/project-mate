@@ -14,7 +14,7 @@ const SignUp = ({ signUp, auth, authSignupError }) => {
   });
 
   
-  // TODO Manipulate the authSignUpError to remove the error on component load
+  // TODO Manipulate the authSignUpError to remove the previous error on component load
 
   useEffect(() => {
     setProjects({error: null})
@@ -22,6 +22,7 @@ const SignUp = ({ signUp, auth, authSignupError }) => {
     if (authSignupError) {
       setProjects({...projects, loading: false, error: authSignupError})
     }
+    // eslint-disable-next-line
   }, [authSignupError]);
 
 

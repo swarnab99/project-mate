@@ -12,7 +12,7 @@ const Navbar = (props) => {
     <div className="navbar-fixed">
       <nav className="nav-wrapper grey darken-3">
         <div className="container">
-          <Link to="/" className="brand-logo left">MarioPlan</Link>
+          <Link to="/" className="brand-logo left">ProjectMate</Link>
           { links }
         </div>
       </nav>

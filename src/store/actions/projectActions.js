@@ -15,6 +15,7 @@ export const createProject = (project) => {
     const firestore = getFirestore()
     const profile = getState().firebase.profile
     const authorId = getState().firebase.auth.uid
+
     // connecting with projects collection on firestore 
     firestore.collection('projects').add({
       ...project,
@@ -31,6 +32,30 @@ export const createProject = (project) => {
       dispatch({ type: 'CREATE_PROJECT_ERROR', err})
       
     })
+
+  }
+};
+
+
+
+
+
+export const deleteProject = (projectId) => {
+  return (dispatch, getState, { getFirebase, getFirestore }) => {
+    // make async call to database
+    
+    const firestore = getFirestore()
+
+    // connecting with projects collection on firestore 
+    firestore.collection("projects").doc(projectId).delete()
+      .then(() => {
+        dispatch({ type: 'DELETE_PROJECT', projectId });
+
+    }).catch((err) => {
+
+      dispatch({ type: 'DELETE_PROJECT_ERROR', err})
+
+    });
 
   }
 };

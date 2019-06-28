@@ -5,11 +5,28 @@ import { createProject } from '../../store/actions/projectActions'
 import { Redirect } from 'react-router-dom'
 
 
-const CreateProject = (props) => {
+const CreateProject = ({ createProject, history, auth, projectCreatedSuccess }) => {
+  
   const [projects, setProjects] = useState({
     title: '',
     content: ''
   });
+
+  const [form, setForm] = useState({
+    loading: false
+  })
+
+  // if(projects.id){
+  //   history.push(`/project/${projects.id}`);
+  // }
+
+  if(projectCreatedSuccess){
+    if(form.loading ) {
+    }
+    // console.log(projectCreatedSuccess, ',loading: ' + form.loading)
+    // history.push(`/project/${projects.id}`);
+    
+  }
 
 
   // METHODS
@@ -22,28 +39,36 @@ const CreateProject = (props) => {
   
   const onSubmit = (e) => {
     e.preventDefault();
-    console.log(props)
+    // TODO
+    setForm({loading: true})
 
-    props.createProject(projects)
-    props.history.push('/');
+    // *createProject() comming from mapDispatchToProps
+    createProject(projects)
+
+    history.push(`/`);
+    
+    // console.log(props)
   }
 
-  if (!props.auth.uid) return <Redirect to='/signin' />
+  if (!auth.uid) return <Redirect to='/signin' />
 
   return (
-    <div className="container" style={{marginTop: '60px'}}>
-      <form onSubmit={onSubmit} className="white">
+    <div className="container signIn_form" style={{marginTop: '60px'}}>
+      { form.loading ? (<div className="progress">
+                              <div className="indeterminate"></div>
+                            </div>) : null }
+      <form  onSubmit={onSubmit} className="white m-0 ">
         <h5 className="grey-text darken-3" style={{marginBottom: '30px'}}>Create your project</h5>
         <div className="input-field">
           <label htmlFor="title">Title</label>
-          <input onChange={onChange} type="text" id="title" required autoComplete="off"/>
+          <input  disabled={form.loading} value={projects.title} onChange={onChange} type="text" id="title" required autoComplete="off"/>
         </div>
         <div className="input-field">
           <label htmlFor="content">Project Content</label>
-          <textarea onChange={onChange} className="materialize-textarea" id="content"></textarea>
+          <textarea disabled={form.loading} value={projects.content} onChange={onChange} className="materialize-textarea" id="content"></textarea>
         </div>
         <div className="input-field">
-          <button className="btn pink lighten-1 z-depth-0">Create</button>
+          <button disabled={form.loading} className="btn pink lighten-1 z-depth-0 signIn_btn">Create</button>
         </div>
       </form>      
     </div>
@@ -53,7 +78,8 @@ const CreateProject = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    auth: state.firebase.auth
+    auth: state.firebase.auth,
+    projectCreatedSuccess: state.project.projectCreatedSuccess
   }
 }
 

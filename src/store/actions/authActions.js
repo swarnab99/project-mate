@@ -38,8 +38,6 @@ export const signOut = () => {
 }
 
 
-// TODO this is not working
-
 // *Action for SignUp (Used in SignUp.js)
 export const signUp = (newUser) => {
   return (dispatch, getState, {getFirebase, getFirestore}) => {
@@ -54,8 +52,7 @@ export const signUp = (newUser) => {
       return firestore.collection('users').doc(resp.user.uid).set({
         firstName: newUser.firstName,
         lastName: newUser.lastName,
-        // *Initial demo: Swarnab Das => SD
-        initials: newUser.firstName[0] + newUser.lastName[0]
+        initials: newUser.firstName[0] + newUser.lastName[0]      // *Initial demo: Swarnab Das => SD
       })
     }).then(() => {
       dispatch({ type: 'SIGNUP_SUCCESS'})

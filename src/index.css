@@ -70,6 +70,16 @@ textarea.materialize-textarea:focus:not([readonly]){
 
 
 
+/* *For Loader Component */
+.loader {
+  margin: 40px auto;
+  text-align: center;
+}
+
+
+
+
+
 
 
 
@@ -117,4 +127,22 @@ textarea.materialize-textarea:focus:not([readonly]){
   display: block;
   margin: 0 auto;
   border-radius: 4px;
+}
+
+
+
+
+
+/* *For ProjectDetails Component */
+.delete-btn i {
+  position: absolute;
+  right: 6px;
+  top: 6px;
+  color: #9e9e9e;
+  cursor: pointer;
+  transition: all .3s;
+}
+.delete-btn i:hover {
+  transform: scale(1.2);
+  color: rgba(0, 0, 0, 0.87);
 }

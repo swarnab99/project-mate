@@ -18,6 +18,7 @@ const SignIn = ({signIn, authLoginError, auth}) => {
     if (authLoginError) {
       setProjects({...projects, loading: false, error: authLoginError})
     }
+    // eslint-disable-next-line
   }, [authLoginError]);
 
 
