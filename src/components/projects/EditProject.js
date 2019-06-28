@@ -1,13 +1,16 @@
-import React, { useState } from 'react'
+import React, {useState, useEffect} from 'react'
 import { connect } from 'react-redux'
-// Actions using thunk
-import { createProject } from '../../store/actions/projectActions'
-import { Redirect } from 'react-router-dom'
+import { editProject } from '../../store/actions/projectActions'
 
 
-const CreateProject = (props) => {
-  // console.log(props)
-  const { createProject, history, auth, projectCreatedSuccess } = props
+
+
+const EditProject = (props) => {
+  console.log(props)
+  
+
+  const {project, id, editProject} = props
+
   const [projects, setProjects] = useState({
     title: '',
     content: ''
@@ -17,14 +20,18 @@ const CreateProject = (props) => {
     loading: false
   })
 
-  // if(projectCreatedSuccess){
-  //   if(form.loading ) {
-  //     history.push(`/`);
-  //   }
-  // }
+  useEffect(() => {
+    if(project){
+      setProjects({
+        ...project
+      })
+      // console.log(project)
+    }
+  }, [project])
 
 
-  // METHODS
+
+
   const onChange = (e) => {
     setProjects({
       ...projects,
@@ -34,23 +41,16 @@ const CreateProject = (props) => {
   
   const onSubmit = (e) => {
     e.preventDefault();
-    // TODO
-    setForm({loading: true})
-
-    // *createProject() comming from mapDispatchToProps
-    createProject(projects)
-
-    setTimeout(() => {
-      history.push(`/`);
-    }, 1000);
     
-    // console.log(props)
+    editProject(projects, id)
+    console.log(projects)
   }
 
-  if (!auth.uid) return <Redirect to='/signin' />
+
 
   return (
-    <div className="container signIn_form" style={{marginTop: '60px'}}>
+    <div className=" signIn_form" style={{marginTop: '60px'}}>
+      
       { form.loading ? (<div className="progress">
                               <div className="indeterminate"></div>
                             </div>) : null }
@@ -65,7 +65,7 @@ const CreateProject = (props) => {
           <textarea disabled={form.loading} value={projects.content} onChange={onChange} className="materialize-textarea" id="content"></textarea>
         </div>
         <div className="input-field">
-          <button disabled={form.loading} className="btn pink lighten-1 z-depth-0 signIn_btn">Create</button>
+          <button disabled={form.loading} className="btn pink lighten-1 z-depth-0 signIn_btn">Update</button>
         </div>
       </form>      
     </div>
@@ -73,19 +73,22 @@ const CreateProject = (props) => {
 }
 
 
-const mapStateToProps = (state) => {
-  return {
-    auth: state.firebase.auth,
-    projectCreatedSuccess: state.project.projectCreatedSuccess
-  }
-}
+
+
+
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    createProject: (project) => dispatch(createProject(project))
+    editProject: (project, projectId) => dispatch(editProject(project, projectId))
   }
 }
 
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(CreateProject)
+
+
+
+
+
+
+export default connect(null, mapDispatchToProps)(EditProject)

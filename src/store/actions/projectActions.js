@@ -40,6 +40,45 @@ export const createProject = (project) => {
 
 
 
+
+
+
+
+export const editProject = (project, id) => {
+  console.log(project, id)
+  return (dispatch, getState, { getFirebase, getFirestore }) => {
+    // make async call to database
+  
+    const firestore = getFirestore()
+    const profile = getState().firebase.profile
+    const authorId = getState().firebase.auth.uid
+
+    // connecting with projects collection on firestore 
+    firestore.collection('projects').doc(id).set({
+      ...project,
+      updatedAt: new Date()
+    }).then(() => {
+
+      dispatch({ type: 'EDIT_PROJECT', project });
+
+    }).catch((err) => {
+
+      dispatch({ type: 'EDIT_PROJECT_ERROR', err})
+      
+    })
+
+  }
+};
+
+
+
+
+
+
+
+
+
+
 export const deleteProject = (projectId) => {
   return (dispatch, getState, { getFirebase, getFirestore }) => {
     // make async call to database

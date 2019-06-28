@@ -27,7 +27,8 @@ exports.projectCreated = functions.firestore
       projectTitle: `${project.title}`,
       firstName: project.authorFirstName,
       lastName: project.authorLastName,
-      time: admin.firestore.FieldValue.serverTimestamp()
+      time: admin.firestore.FieldValue.serverTimestamp(),
+      initials: project.authorFirstName[0].toUpperCase() + project.authorLastName[0].toUpperCase()  
     }
 
     return createNotification(notification)
@@ -45,7 +46,8 @@ exports.userJoined = functions.auth.user()
           type: 'new_user',
           firstName: newUser.firstName,
           lastName: newUser.lastName,
-          time: admin.firestore.FieldValue.serverTimestamp()
+          time: admin.firestore.FieldValue.serverTimestamp(),
+          initials: newUser.firstName[0].toUpperCase() + newUser.lastName[0].toUpperCase() 
         }
 
         return createNotification(notification)
