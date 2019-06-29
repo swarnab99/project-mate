@@ -11,7 +11,7 @@ const Navbar = (props) => {
   const links = auth.uid ? <SignedInLinks profile={profile} /> : <SignOutLinks />
   return (
     <div className="navbar-fixed">
-      <nav className="nav-wrapper grey darken-3">
+      <nav className="nav-wrapper">
         <div className="container">
           <Link to="/" className="brand-logo left">ProMate</Link>
           { links }
