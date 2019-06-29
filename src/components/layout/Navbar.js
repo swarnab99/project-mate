@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import SignedInLinks from './SignedInLinks'
 import SignOutLinks from './SignedOutLinks'
 import { connect } from 'react-redux'
+// import Logo from '../../projectMate.svg'   //!Use logo
 
 const Navbar = (props) => {
   const { auth, profile } = props;
@@ -12,7 +13,7 @@ const Navbar = (props) => {
     <div className="navbar-fixed">
       <nav className="nav-wrapper grey darken-3">
         <div className="container">
-          <Link to="/" className="brand-logo left">ProjectMate</Link>
+          <Link to="/" className="brand-logo left">ProMate</Link>
           { links }
         </div>
       </nav>
