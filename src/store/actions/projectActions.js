@@ -23,9 +23,9 @@ export const createProject = (project) => {
       authorLastName: profile.lastName,
       authorId: authorId,
       createdAt: new Date()
-    }).then(() => {
+    }).then((docRef) => {
 
-      dispatch({ type: 'CREATE_PROJECT', project });
+      dispatch({ type: 'CREATE_PROJECT', project, docRef });
 
     }).catch((err) => {
 

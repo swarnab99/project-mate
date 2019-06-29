@@ -7,7 +7,7 @@ import { compose } from 'redux'
 import { Redirect } from 'react-router-dom'
 
 const Notifications = ({auth, notifications}) => {
-  console.log(notifications)
+  // console.log(notifications)
   // *Route Guard
   if (!auth.uid) return <Redirect to='/signin' />
 

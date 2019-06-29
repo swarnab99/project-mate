@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { signIn } from '../../store/actions/authActions'
 import { Redirect } from 'react-router-dom'
 
-const SignIn = ({signIn, authLoginError, auth}) => {
+const SignIn = ({signIn, authLoginError, authLoginErrorTime, auth}) => {
   const [projects, setProjects] = useState({
     email: '',
     password: '',
@@ -11,15 +11,15 @@ const SignIn = ({signIn, authLoginError, auth}) => {
     error: null
   });
 
-  // TODO Manipulate the authLoginError to remove the error on component load
+
 
   useEffect(() => {
-    // Update the document title using the browser API
     if (authLoginError) {
       setProjects({...projects, loading: false, error: authLoginError})
     }
     // eslint-disable-next-line
-  }, [authLoginError]);
+    // ?This authLoginErrorTime will update on every login failure so this hook will executed and loading will work nicely :-)
+  }, [authLoginErrorTime]);
 
 
 
@@ -68,6 +68,7 @@ const SignIn = ({signIn, authLoginError, auth}) => {
 const mapStateToProps = (state) => {
   return {
     authLoginError: state.auth.authLoginError,
+    authLoginErrorTime: state.auth.authLoginErrorTime,
     auth: state.firebase.auth
   }
 }

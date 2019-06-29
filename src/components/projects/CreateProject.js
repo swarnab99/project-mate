@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 // Actions using thunk
 import { createProject } from '../../store/actions/projectActions'
@@ -7,7 +7,7 @@ import { Redirect } from 'react-router-dom'
 
 const CreateProject = (props) => {
   // console.log(props)
-  const { createProject, history, auth, projectCreatedSuccess } = props
+  const { createProject, history, auth, projectCreatedId } = props
   const [projects, setProjects] = useState({
     title: '',
     content: ''
@@ -17,14 +17,13 @@ const CreateProject = (props) => {
     loading: false
   })
 
-  // if(projectCreatedSuccess){
-  //   if(form.loading ) {
-  //     history.push(`/`);
-  //   }
-  // }
+  useEffect(() => {
+    if(form.loading) {
+      history.push(`/project/${projectCreatedId}`)
+    }
+  }, [projectCreatedId])
 
 
-  // METHODS
   const onChange = (e) => {
     setProjects({
       ...projects,
@@ -39,10 +38,6 @@ const CreateProject = (props) => {
 
     // *createProject() comming from mapDispatchToProps
     createProject(projects)
-
-    setTimeout(() => {
-      history.push(`/`);
-    }, 1000);
     
     // console.log(props)
   }
@@ -76,7 +71,7 @@ const CreateProject = (props) => {
 const mapStateToProps = (state) => {
   return {
     auth: state.firebase.auth,
-    projectCreatedSuccess: state.project.projectCreatedSuccess
+    projectCreatedId : state.project.projectCreatedId 
   }
 }
 

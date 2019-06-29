@@ -7,10 +7,10 @@ const projectReducer = (state = initState, action) => {
   // Manipulate the state here
   switch (action.type) {
     case 'CREATE_PROJECT':
-      console.log('create project', action.project)
+      console.log('create project', action.docRef.id)
       return {
         ...state,
-        projectCreatedSuccess: 'wow it is done'
+        projectCreatedId: action.docRef.id
       };
     case 'CREATE_PROJECT_ERROR':
       console.log('create project error', action.err)
@@ -21,7 +21,7 @@ const projectReducer = (state = initState, action) => {
       console.log('update project', action.project)
       return {
         ...state,
-        projectCreatedSuccess: 'wow it is done'
+        projectUpdateTime: new Date()
       };
     case 'EDIT_PROJECT_ERROR':
       console.log('update project error', action.err)

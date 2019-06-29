@@ -21,7 +21,7 @@ const ProjectsDetails = (props) => {
   })
 
 
-  const {project, auth, history} = props
+  const {project, auth, history, projectUpdateTime} = props
   // *Route Gaurd
   if(!auth.uid) return <Redirect to='/signin' />
 
@@ -35,9 +35,9 @@ const ProjectsDetails = (props) => {
 
   const onClick = () => {
     if(!component.isEdit)
-      setComponent({isEdit: !component.isEdit, icon: 'keyboard_backspace'});
+      setComponent({isEdit: true, icon: 'keyboard_backspace'})
     else
-      setComponent({isEdit: !component.isEdit, icon: 'edit'});
+      setComponent({isEdit: false, icon: 'edit'})
   }
 
 
@@ -67,7 +67,7 @@ const ProjectsDetails = (props) => {
               </div>
             </div>
           </div>
-        ) : (<EditProject project={project} id={props.match.params.id}  />)}
+        ) : (<EditProject project={project} id={props.match.params.id} projectUpdateTime={projectUpdateTime} setComponent={setComponent} />)}
       </div>
     )
   } else {
@@ -84,7 +84,8 @@ const mapStateToProps = (state, ownProps) => {
   const project = projects ? projects[id] : null
   return {
     project: project,
-    auth: state.firebase.auth
+    auth: state.firebase.auth,
+    projectUpdateTime: state.project.projectUpdateTime    // For Loading feature in EditProject.js component
   }
 }
 

@@ -2,10 +2,6 @@ const functions = require('firebase-functions');
 const admin = require('firebase-admin');
 admin.initializeApp(functions.config().firebase);
 
-exports.helloWorld = functions.https.onRequest((request, response) => {
-  response.send("Hello, ninjas!");
-});
-
 
 // * This function will add the information(notificaion) to the notifications collection
 const createNotification = (notification => {
@@ -19,12 +15,13 @@ const createNotification = (notification => {
 // * This cloud function will run whenever a NEW PROJECT is created
 exports.projectCreated = functions.firestore
   .document('projects/{projectId}')
-  .onCreate(doc => {
+  .onCreate((doc, context) => {
 
     const project = doc.data();
     const notification = {
       type: 'new_project',
-      projectTitle: `${project.title}`,
+      projectId: context.params.projectId,
+      projectTitle: project.title,
       firstName: project.authorFirstName,
       lastName: project.authorLastName,
       time: admin.firestore.FieldValue.serverTimestamp(),
@@ -44,6 +41,7 @@ exports.userJoined = functions.auth.user()
         const newUser = doc.data();
         const notification = {
           type: 'new_user',
+          uId: user.uid,
           firstName: newUser.firstName,
           lastName: newUser.lastName,
           time: admin.firestore.FieldValue.serverTimestamp(),

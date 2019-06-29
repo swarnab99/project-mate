@@ -1,3 +1,17 @@
+## Todo
+For Notification Link
+=> Check if notification available or not
+=>> Add deleted text to the notification and disable link this will save api calls. Cloud function is needed (i.e onDeleted) to do this
+
+
+
+
+
+
+
+
+
+
 ## Available Scripts
 
 In the project directory, you can run:

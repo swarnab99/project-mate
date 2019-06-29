@@ -1,5 +1,6 @@
 import React from 'react'
 import moment from 'moment'
+import {Link} from 'react-router-dom'
 
 const NotificationItem = ({notifications}) => {
   return (
@@ -10,7 +11,7 @@ const NotificationItem = ({notifications}) => {
               // When new project is created
               <li className="collection-item avatar z-depth-1"  key={item.id} >
                 <i className="material-icons circle green" style={{fontFamily: 'sans-serif'}}>{item.initials}</i>
-                <span className="title">{item.firstName} {item.lastName} created a project - "{item.projectTitle}"</span>
+                <Link to={`/project/${item.projectId}`} className="title">{item.firstName} {item.lastName} created a project - "{item.projectTitle}"</Link>
                 <p className="text-mute">
                   { moment(item.time.toDate()).startOf('min').fromNow() }
                 </p>
